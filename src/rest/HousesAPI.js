@@ -11,7 +11,7 @@ class HousesApi {
         }        
     }
 
-    pub = async (house) => {
+    put = async (house) => {
         try {
             const resp = await fetch(`${HOUSES_ENDPOINT}/${house._id}`, {
                 method: 'PUT',
@@ -24,6 +24,16 @@ class HousesApi {
         } catch(e) {
             console.log('updating houses had an issue.', e);
         }   
+    }
+
+    delete = async (house) => {
+        try {
+            const resp = await fetch(`${HOUSES_ENDPOINT}/${house._id}`, {
+                method: 'DELETE'
+            });
+        }catch(e) {
+            console.log('could not delete house.', e);
+        }
     }
 }
 

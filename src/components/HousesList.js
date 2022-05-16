@@ -1,6 +1,7 @@
 import React from 'react';
 import { House } from './House';
 import { housesApi } from '../rest/HousesAPI';
+import { NewHouseForm } from './NewHouseForm';
 
 export class HousesList extends React.Component {
     state = {
@@ -21,17 +22,31 @@ export class HousesList extends React.Component {
         this.fetchHouses();
     };
 
+    addNewHouse = async (newHouse) => {
+        await housesApi.put(newHouse);
+        this.fetchHouses();
+    };
+
+    deleteHouse = async (houseId) => {
+        await housesApi.delete(houseId);
+        this.fetchHouses();
+    };
+
     render() {
         return (
-            <div className="house-list">
-                {this.state.houses.map((house) => (
-                    <House
-                        house={house}
-                        key={house._id}
-                        updateHouse={this.updateHouse}
-                    />
-                ))}
-            </div>
+            <>
+                <NewHouseForm />
+                <div className="house-list">
+                    {this.state.houses.map((house) => (
+                        <House
+                            house={house}
+                            key={house._id}
+                            updateHouse={this.updateHouse}
+                        />
+                    ))}
+                </div>
+            </>
+            
         )
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NewRoomForm } from './NewRoomForm';
 
+
 export const House = (props) => {
     const { house, updateHouse} = props;
 
